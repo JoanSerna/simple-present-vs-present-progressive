@@ -37,8 +37,9 @@ export class AppComponent implements OnInit {
   public questions: object;
   public state: string;
   public animation: boolean;
-
+  private width: number;
   constructor() {
+    this.width = 1150;
     this.questions = [{}];
     this.state = 'loser';
     this.animation = false;
@@ -68,9 +69,26 @@ export class AppComponent implements OnInit {
         response: 'Getting'
       },
       {
-        question: 'I am ________ a haircut at the moment',
-        answers: ['Gets', 'Getting', 'Geting', 'Get'],
-        response: 'Getting'
+        question:
+          'Every day his grandfather______ for a walk, but today he __________ a book.',
+        answers: [
+          'Goes/Is reads',
+          'Goes/Is reading',
+          'Go/ Are read',
+          'Goes/Is reades'
+        ],
+        response: 'Goes/Is reading'
+      },
+      {
+        question:
+          'She _______________ a cake at the moment, but she usually ______ pasta',
+        answers: [
+          'Is making/cooks',
+          'Makes/cooks',
+          'Is make/is cooking',
+          'Is makes/is cooks'
+        ],
+        response: 'Is making/cooks'
       }
     ];
   }
@@ -93,6 +111,7 @@ export class AppComponent implements OnInit {
   public next() {
     this.fire.nativeElement.style.transform = `translate(0,0)`;
     // this.card.nativeElement.style.transform = 'translateX(-1150px)';
-    this.card.nativeElement.style.marginLeft = '-1150px';
+    this.card.nativeElement.style.marginLeft = -this.width + 'px';
+    this.width = this.width + 1150;
   }
 }
