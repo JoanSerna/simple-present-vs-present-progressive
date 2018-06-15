@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-12">
+      <h1 class="text-center">
+        <span [ngClass]="{'animation': animation}" #fire>🔥</span> 💥Present Simple vs Present Progressive💥🔥</h1>
+    </div>
+    <button class="btn btn-outline-primary d-flex justify-content-center" (click)="next()">Next questions</button>
+  </div>
+  <div class="row mt-5 d-flex justify-content-start flex-nowrap cards">
+    <div class="col-sm-12 mt-2 " *ngFor="let question of questions; let i = index;" #card>
+      <div class="card text-dark">
+        <div alt="img" class="card-img-top"></div>
+        <div class="card-body">
+          <h1 class="card-title">{{question.question}}</h1>
+          <div class="d-flex justify-content-between flex-wrap">
+            <button class="btn btn-lg  w-25 m-5" *ngFor="let answer of question.answers; let i = index" (click)="response(answer,question.response, $event.target)"
+              [ngClass]="{'btn-primary': i === 0, 'btn-secondary': i === 1, 'btn-danger': i === 2, 'btn-success': i === 3}">
+              {{answer}}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<router-outlet>
+</router-outlet>

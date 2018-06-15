@@ -1,0 +1,19 @@
+.animation {
+  position: absolute;
+  top: 0;
+  left: 94px;
+  transition: all 2s;
+  z-index: 5;
+}
+@keyframes rotate {
+  to {
+    transform: rotate(90deg);
+  }
+}
+.cards {
+  overflow-x: hidden;
+}
+
+.mt-2 {
+  transition: all 2s !important;
+}
