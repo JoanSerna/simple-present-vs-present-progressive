@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {
   animate,
-  style,
   state,
+  style,
   transition,
   trigger
 } from '@angular/animations';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'denario-root',
@@ -37,14 +37,14 @@ export class AppComponent implements OnInit {
   public questions: object;
   public state: string;
   public animation: boolean;
-  private width: number;
   public correct: number;
   public inCorrect: number;
+  private width: number;
   private clickNext: boolean;
   constructor() {
     this.correct = 0;
     this.inCorrect = 0;
-    this.width = 1150;
+    this.width = 1130;
     this.questions = [{}];
     this.state = 'loser';
     this.animation = false;
@@ -216,11 +216,13 @@ export class AppComponent implements OnInit {
 
     if (target === response) {
       if (!this.clickNext) {
-        this.fire.nativeElement.style.transform = `translate(${button
-          .getBoundingClientRect()
-          .left.toString()}px,${button
-          .getBoundingClientRect()
-          .top.toString()}px`;
+        this.fire.nativeElement.style.transform = `translate(${button.getBoundingClientRect()
+          .left -
+          button.getBoundingClientRect().width / 2}px,${
+          button.getBoundingClientRect().top
+        }px`;
+        console.log(button.getBoundingClientRect());
+
         this.state = 'winer';
         this.animation = true;
         this.correct++;
@@ -237,7 +239,7 @@ export class AppComponent implements OnInit {
   public next() {
     this.fire.nativeElement.style.transform = `translate(0,0)`;
     this.card.nativeElement.style.marginLeft = -this.width + 'px';
-    this.width = this.width + 1150;
+    this.width = this.width + 1140;
     this.clickNext = false;
   }
 }

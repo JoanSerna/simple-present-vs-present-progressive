@@ -2,6 +2,7 @@
   "name": "simple-vs-progressive",
   "version": "0.0.0",
   "scripts": {
+    "prod": "ng build --prod && firebase deploy",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
