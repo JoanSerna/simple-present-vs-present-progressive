@@ -4,12 +4,8 @@ import { AppComponent } from './app.component';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
+      imports: [RouterTestingModule],
+      declarations: [AppComponent]
     }).compileComponents();
   }));
   it('should create the app', async(() => {
@@ -17,15 +13,17 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
-  it(`should have as title 'denario'`, async(() => {
+  it(`should have as title 'Present Simple vs Present Progressive'`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('denario');
+    expect(app.title).toEqual('💥Present Simple vs Present Progressive💥');
   }));
   it('should render title in a h1 tag', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to simple-vs-progressive!');
+    expect(compiled.querySelector('h1').textContent).toContain(
+      '💥Present Simple vs Present Progressive💥'
+    );
   }));
 });

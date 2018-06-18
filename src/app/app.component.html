@@ -2,9 +2,9 @@
   <div class="row mt-5">
     <div class="col-12">
       <h1 class="text-center">
-        <span [ngClass]="{'animation': animation}" #fire>🔥</span> 💥Present Simple vs Present Progressive💥🔥</h1>
+        <span [ngClass]="{'animation': animation}" #fire>🔥</span> {{title}}🔥</h1>
     </div>
-    <button class="btn btn-outline-primary d-flex justify-content-center" (click)="next()">Next questions</button>
+    <button class="btn btn-outline-primary d-flex justify-content-center" (click)="next()" [disabled]="false">Next questions</button>
   </div>
   <div class="row">
     <div class="col-6 text-center text-success">Corrects {{correct}}</div>

@@ -7,6 +7,11 @@ import {
 } from '@angular/animations';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
+interface StructQuestions {
+  question: string;
+  answers: string[];
+  response: string;
+}
 @Component({
   selector: 'denario-root',
   templateUrl: './app.component.html',
@@ -34,24 +39,25 @@ export class AppComponent implements OnInit {
   fire: ElementRef;
   @ViewChild('card', { read: ElementRef })
   card: ElementRef;
-  public questions: object;
+  public questions: StructQuestions[];
   public state: string;
   public animation: boolean;
   public correct: number;
   public inCorrect: number;
   private width: number;
   private clickNext: boolean;
+  public title: string;
+  public marker: boolean;
   constructor() {
+    this.title = '💥Present Simple vs Present Progressive💥';
     this.correct = 0;
     this.inCorrect = 0;
     this.width = 1130;
-    this.questions = [{}];
+    this.questions = [];
     this.state = 'loser';
     this.animation = false;
     this.clickNext = false;
-  }
-
-  ngOnInit() {
+    this.marker = true;
     this.questions = [
       {
         question:
@@ -207,15 +213,23 @@ export class AppComponent implements OnInit {
     ];
   }
 
+  ngOnInit() {
+    this.questions.sort((prev, next) => {
+      return Math.random() - 0.5;
+    });
+    this.questions.map(question => {
+      question.answers.sort((prev, next) => Math.random() - 0.5);
+    });
+  }
+
   public response(
     target: string,
     response: string,
     button: HTMLButtonElement
   ): void {
-    console.log(this.clickNext);
-
     if (target === response) {
       if (!this.clickNext) {
+        this.marker = false;
         this.fire.nativeElement.style.transform = `translate(${button.getBoundingClientRect()
           .left -
           button.getBoundingClientRect().width / 2}px,${
@@ -230,6 +244,7 @@ export class AppComponent implements OnInit {
       }
     } else {
       if (!this.clickNext) {
+        this.marker = false;
         this.inCorrect++;
         button.textContent = '❌';
         this.clickNext = true;
@@ -237,6 +252,7 @@ export class AppComponent implements OnInit {
     }
   }
   public next() {
+    this.marker = true;
     this.fire.nativeElement.style.transform = `translate(0,0)`;
     this.card.nativeElement.style.marginLeft = -this.width + 'px';
     this.width = this.width + 1140;
